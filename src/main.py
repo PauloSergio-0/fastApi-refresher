@@ -11,9 +11,33 @@ async def saudar():
 async def read_All_dBooks():
     return BOOKS
 
+@app.get('/books/search/{book_title}')
+async def searchTitle(book_title: str):
+    message = {"message": f"erro"}
+    
+    for book in BOOKS:
+        
+        if book_title.casefold() in book['title'].casefold():
+            
+            if book_title.casefold() == '1984':
+                message ={"message": f"O livro {book_title.casefold()} é o meu livro favorito!"}
+                break
+            else:
+                message ={"message": f"O livro {book_title.casefold()} está disponivel"}
+                break
+        else:
+            message ={"message": f"O livro {book_title.casefold()} não está disponivel"}
+    
+    return message
+        
+            
+@app.get("/books/{book_id}")
+def searchBook(book_id):
+    return {'message': book_id}
+
 @app.post("/username")
 def username(username):
-    
+
     return {"user": f"Usuário é {username}"}
 
 
