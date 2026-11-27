@@ -31,6 +31,8 @@ async def searchTitle(book_title: str):
     return message
         
 @app.get('/books/search/')
+def search_category():
+    return ''
             
 @app.get("/books/{book_id}")
 def searchBook(book_id):
